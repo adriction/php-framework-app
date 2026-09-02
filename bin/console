@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+
+/**
+ * Point d'entree CLI. Usage :
+ *   php bin/console list
+ *   php bin/console route:list
+ *   php bin/console plugin:install <nom>
+ *   php bin/console make:controller <Nom>
+ *
+ * Framework\Kernel et Framework\Console\Application viennent de
+ * vendor/adrien/php-framework (voir composer.json : repository path).
+ */
+
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+use Framework\Console\Application;
+use Framework\Kernel;
+
+$kernel = new Kernel(dirname(__DIR__));
+$container = $kernel->boot();
+
+$app = new Application($container);
+exit($app->run($argv));

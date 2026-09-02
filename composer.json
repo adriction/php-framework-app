@@ -1,0 +1,27 @@
+{
+    "name": "adrien/php-framework-app",
+    "description": "Application construite sur adrien/php-framework.",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.4",
+        "adrien/php-framework": "@dev"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../php-framework"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/App/"
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

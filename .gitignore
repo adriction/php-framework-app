@@ -1,0 +1,17 @@
+/vendor/
+/.env
+
+# Sources des plugins clones par PluginManager (dependances -> voir composer.json /
+# plugins/installed.json qui restent versionnes, comme /vendor/ pour composer).
+/plugins/*
+!/plugins/installed.json
+
+/var/cache/*
+!/var/cache/.gitkeep
+/var/log/*
+!/var/log/.gitkeep
+
+.DS_Store
+/.idea/
+/.vscode/
+/.phpunit.result.cache
