@@ -32,11 +32,19 @@ sh: ## Shell dans le conteneur php
 logs: ## Suit les logs de tous les conteneurs
 	$(DC) logs -f
 
-composer: ## make composer c="require vendor/package"
-	$(DC) exec php composer $(c)
+composer: ## make composer require vendor/package
+	$(DC) exec php composer $(or $(filter-out $@,$(MAKECMDGOALS)),$(c))
 
-console: ## make console c="route:list"
-	$(DC) exec php php bin/console $(c)
+console: ## make console route:list
+	$(DC) exec php php bin/console $(or $(filter-out $@,$(MAKECMDGOALS)),$(c))
 
 db-shell: ## Client SQL interactif dans le conteneur mariadb
 	$(DC) exec mariadb sh -c 'mariadb -u"$$MARIADB_USER" -p"$$MARIADB_PASSWORD" "$$MARIADB_DATABASE"'
+
+# Les mots passes apres "console"/"composer" sur la ligne de commande (ex.
+# "route:list" dans "make console route:list") sont sinon interpretes par
+# Make comme des cibles a part entiere ("No rule to make target 'route:list'").
+# Regle attrape-tout (recette vide) pour les neutraliser ; l'ancienne syntaxe
+# make console c="route:list" continue de fonctionner (cf. $(or ...) ci-dessus).
+%:
+	@:
