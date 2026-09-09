@@ -11,6 +11,9 @@
 /var/log/*
 !/var/log/.gitkeep
 
+# Sortie generee par "assets:build"/"assets:watch" (voir docs/assets.html).
+/public/build/
+
 .DS_Store
 /.idea/
 /.vscode/
