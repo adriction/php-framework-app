@@ -1,12 +1,16 @@
 <?php
 
 use Doctrine\DBAL\Connection;
+use Framework\Assets\AssetManifest;
 use Framework\Config\Config;
 use Framework\Database\ConnectionFactory;
 use Framework\Log\FileLogger;
+use Framework\Mail\MailerInterface;
+use Framework\Mail\PhpMailerMailer;
 use Framework\Plugin\PluginManager;
 use Framework\Routing\Router;
 use Framework\View\TwigFactory;
+use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Twig\Environment;
 
@@ -28,10 +32,12 @@ return [
     ),
 
     Environment::class => factory(
-        static fn (Config $config) => TwigFactory::create($config)
+        static fn (Config $config, PluginManager $pluginManager, AssetManifest $assetManifest, ContainerInterface $container, Router $router) =>
+            TwigFactory::create($config, $pluginManager, $assetManifest, $container, $router)
     ),
 
     LoggerInterface::class => autowire(FileLogger::class),
+    MailerInterface::class => autowire(PhpMailerMailer::class),
 
     Router::class => autowire(),
     PluginManager::class => autowire(),
