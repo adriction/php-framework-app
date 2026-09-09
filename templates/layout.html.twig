@@ -2,7 +2,26 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}php-framework-app{% endblock %}</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <link rel="canonical" href="{% block canonical %}{% endblock %}">
+
+    {# Open Graph : og:title/og:description reprennent title/description par defaut, pas besoin de les repeter #}
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}{{ block('title') }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ block('description') }}{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% endblock %}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ block('og_title') }}">
+    <meta name="twitter:description" content="{{ block('og_description') }}">
+    <meta name="twitter:image" content="{{ block('og_image') }}">
+
+    {# Deposer un favicon.ico dans public/ (non fourni par le framework) #}
+    <link rel="icon" href="/favicon.ico">
+
     <style>
         body { font-family: -apple-system, Segoe UI, sans-serif; max-width: 720px; margin: 3rem auto; padding: 0 1rem; color: #222; }
         h1 { margin-bottom: .25rem; }
