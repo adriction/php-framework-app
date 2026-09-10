@@ -18,11 +18,11 @@ Ce fichier guide Claude Code (claude.ai/code) lors du travail sur ce dépôt.
 
 `vendor/adrien/php-framework` est donc un **lien symbolique** vers `/home/adrien/Apps/php-framework` (à l'intérieur du conteneur `php`, ce lien pointe vers `/var/www/php-framework`, monté par `docker/docker-compose.yml` — voir le commentaire dans ce fichier). **Toute modification faite directement dans `/home/adrien/Apps/php-framework/src/Framework/` est donc reflétée immédiatement ici**, sans réinstallation — pratique pour développer les deux en parallèle, mais à garder en tête : un bug qui semble venir de cette app peut en réalité venir d'une modif récente du framework.
 
-Si le framework a un `composer.json` modifié (nouvelle dépendance, etc.), relancer `make composer c="update adrien/php-framework"`.
+Si le framework a un `composer.json` modifié (nouvelle dépendance, etc.), relancer `make composer update adrien/php-framework`.
 
 ## Stack
 
-PHP 8.4, nginx, MariaDB 11 — tout dans Docker (`docker/docker-compose.yml`). **Ne jamais exécuter `composer`/`php` sur l'hôte** — toujours via le `Makefile` (`make composer c="..."`, `make console c="..."`, `make sh`).
+PHP 8.4, nginx, MariaDB 11 — tout dans Docker (`docker/docker-compose.yml`). **Ne jamais exécuter `composer`/`php` sur l'hôte** — toujours via le `Makefile` (`make composer <commande>`, `make console <commande>`, `make sh`).
 
 ## Architecture — MVC en couches strictes
 
@@ -41,10 +41,11 @@ make install                          # premiere installation (build, up, compos
 make up / make down / make restart
 make sh                               # shell dans le conteneur php
 make logs
-make composer c="require vendor/package"
-make console c="route:list"
-make console c="plugin:install <nom>"
-make console c="make:controller <Nom>"
+make composer require vendor/package
+make console route:list
+make console plugin:install <nom>
+make console make:controller <Nom>
+make console assets:build             # ou assets:watch / assets:init
 make db-shell
 ```
 
