@@ -1,0 +1,246 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Style guide — php-framework-app{% endblock %}
+
+{% block body %}
+    <div class="container" style="padding-block: var(--space-8);">
+        <h1>Style guide</h1>
+        <p class="card-text">Reference visuelle des composants du framework CSS (<code>assets/css/framework/</code>). A consulter apres toute modification de <code>tokens.css</code> ou d'un fichier de <code>components/</code>.</p>
+
+        <h2 style="margin-top: var(--space-8);">Grille — .row / .col-*</h2>
+        <div class="row g-3" style="margin-top: var(--space-4);">
+            <div class="col-12 col-md-4" style="background: var(--color-primary-soft); border-radius: var(--radius-md); padding: var(--space-4);">col-12 col-md-4</div>
+            <div class="col-12 col-md-4" style="background: var(--color-primary-soft); border-radius: var(--radius-md); padding: var(--space-4);">col-12 col-md-4</div>
+            <div class="col-12 col-md-4" style="background: var(--color-primary-soft); border-radius: var(--radius-md); padding: var(--space-4);">col-12 col-md-4</div>
+        </div>
+
+        <h2 style="margin-top: var(--space-8);">Grille — .grid-auto-fit</h2>
+        <div class="grid grid-auto-fit g-3" style="margin-top: var(--space-4);">
+            <div style="background: var(--color-surface); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4);">Card A</div>
+            <div style="background: var(--color-surface); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4);">Card B</div>
+            <div style="background: var(--color-surface); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4);">Card C</div>
+            <div style="background: var(--color-surface); border: var(--border-width) solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-4);">Card D</div>
+        </div>
+
+        <h2 style="margin-top: var(--space-8);">Boutons</h2>
+        <div class="row g-2" style="margin-top: var(--space-4);">
+            <div class="col-auto"><button class="btn btn-primary">Primary</button></div>
+            <div class="col-auto"><button class="btn btn-secondary">Secondary</button></div>
+            <div class="col-auto"><button class="btn btn-success">Success</button></div>
+            <div class="col-auto"><button class="btn btn-danger">Danger</button></div>
+            <div class="col-auto"><button class="btn btn-warning">Warning</button></div>
+            <div class="col-auto"><button class="btn btn-info">Info</button></div>
+        </div>
+        <div class="row g-2" style="margin-top: var(--space-3);">
+            <div class="col-auto"><button class="btn btn-outline-primary">Primary</button></div>
+            <div class="col-auto"><button class="btn btn-outline-secondary">Secondary</button></div>
+            <div class="col-auto"><button class="btn btn-outline-danger">Danger</button></div>
+        </div>
+        <div class="row g-2 align-items-center" style="margin-top: var(--space-3);">
+            <div class="col-auto"><button class="btn btn-primary btn-sm">Small</button></div>
+            <div class="col-auto"><button class="btn btn-primary">Base</button></div>
+            <div class="col-auto"><button class="btn btn-primary btn-lg">Large</button></div>
+            <div class="col-auto"><button class="btn btn-primary" disabled>Disabled</button></div>
+            <div class="col-auto"><button class="btn btn-primary btn-loading">Loading</button></div>
+        </div>
+        <div class="btn-group" style="margin-top: var(--space-3);">
+            <button class="btn btn-outline-secondary">Jour</button>
+            <button class="btn btn-outline-secondary">Semaine</button>
+            <button class="btn btn-outline-secondary">Mois</button>
+        </div>
+
+        <h2 style="margin-top: var(--space-8);">Formulaire</h2>
+        <div class="row" style="margin-top: var(--space-4);">
+            <div class="col-12 col-md-6">
+                <div class="form-group">
+                    <label class="form-label" for="demo-email">Email</label>
+                    <input class="form-control" type="email" id="demo-email" placeholder="vous@exemple.com">
+                    <span class="form-text">On ne partagera jamais votre email.</span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="demo-invalid">Champ invalide</label>
+                    <input class="form-control is-invalid" type="text" id="demo-invalid" value="valeur incorrecte">
+                    <div class="invalid-feedback">Ce champ est requis.</div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="demo-select">Pays</label>
+                    <select class="form-select" id="demo-select">
+                        <option>France</option>
+                        <option>Belgique</option>
+                        <option>Suisse</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="demo-check">
+                        <label class="form-check-label" for="demo-check">J'accepte les conditions</label>
+                    </div>
+                    <label class="form-switch">
+                        <input class="form-switch-input" type="checkbox" checked>
+                        <span class="form-check-label">Notifications actives</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: var(--space-8);">Cards</h2>
+        <div class="grid grid-auto-fit g-3" style="margin-top: var(--space-4);">
+            <div class="card card-hover">
+                <div class="card-header">Deal Origin AI</div>
+                <div class="card-body">
+                    <h3 class="card-title">Titre de la card</h3>
+                    <p class="card-subtitle">Sous-titre discret</p>
+                    <p class="card-text">Un peu de texte de description pour illustrer le rendu du composant card avec plusieurs zones.</p>
+                    <div class="card-actions">
+                        <button class="btn btn-primary btn-sm">Action</button>
+                        <button class="btn btn-outline-secondary btn-sm">Annuler</button>
+                    </div>
+                </div>
+                <div class="card-footer">Pied de card</div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Card simple</h3>
+                    <p class="card-text">Sans header ni footer, juste un body.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Troisieme card</h3>
+                    <p class="card-text">Pour illustrer le wrap automatique de .grid-auto-fit.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: var(--space-8);">Badges</h2>
+        <div class="row g-2" style="margin-top: var(--space-4);">
+            <div class="col-auto"><span class="badge badge-primary">Primary</span></div>
+            <div class="col-auto"><span class="badge badge-success">Actif</span></div>
+            <div class="col-auto"><span class="badge badge-danger">Erreur</span></div>
+            <div class="col-auto"><span class="badge badge-warning">En attente</span></div>
+            <div class="col-auto"><span class="badge badge-primary-soft">Primary soft</span></div>
+            <div class="col-auto"><span class="badge badge-success-soft">Success soft</span></div>
+            <div class="col-auto"><span class="badge-dot badge-dot-success"></span> En ligne</div>
+        </div>
+
+        <h2 style="margin-top: var(--space-8);">Alertes</h2>
+        <div style="margin-top: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3);">
+            <div class="alert alert-success">
+                <div class="alert-body">
+                    <div class="alert-title">Succes</div>
+                    L'operation s'est deroulee correctement.
+                </div>
+            </div>
+            <div class="alert alert-danger alert-dismissible">
+                <div class="alert-body">
+                    <div class="alert-title">Erreur</div>
+                    Une erreur est survenue lors du traitement.
+                </div>
+                <button class="btn-close" aria-label="Fermer" data-dismiss="alert"></button>
+            </div>
+        </div>
+
+        <h2 style="margin-top: var(--space-8);">Breadcrumb + onglets</h2>
+        <div class="breadcrumb" style="margin-top: var(--space-4);">
+            <span class="breadcrumb-item"><a href="#">Accueil</a></span>
+            <span class="breadcrumb-item"><a href="#">Deals</a></span>
+            <span class="breadcrumb-item active">Deal #42</span>
+        </div>
+
+        <div class="nav-tabs" style="margin-top: var(--space-4);">
+            <a class="nav-link active" href="#" data-toggle="tab" data-target="#demo-tab-overview">Vue d'ensemble</a>
+            <a class="nav-link" href="#" data-toggle="tab" data-target="#demo-tab-documents">Documents</a>
+            <a class="nav-link" href="#" data-toggle="tab" data-target="#demo-tab-history">Historique</a>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane active" id="demo-tab-overview">
+                <p class="card-text">Contenu de l'onglet "Vue d'ensemble".</p>
+            </div>
+            <div class="tab-pane" id="demo-tab-documents">
+                <p class="card-text">Contenu de l'onglet "Documents".</p>
+            </div>
+            <div class="tab-pane" id="demo-tab-history">
+                <p class="card-text">Contenu de l'onglet "Historique".</p>
+            </div>
+        </div>
+
+        <h2 style="margin-top: var(--space-8);">Table</h2>
+        <div class="table-responsive" style="margin-top: var(--space-4);">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Entreprise</th>
+                    <th>Statut</th>
+                    <th>Montant</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Acme SAS</td>
+                    <td><span class="badge badge-success-soft">Actif</span></td>
+                    <td>120 000 €</td>
+                </tr>
+                <tr>
+                    <td>Globex SA</td>
+                    <td><span class="badge badge-warning-soft">En attente</span></td>
+                    <td>84 500 €</td>
+                </tr>
+                <tr>
+                    <td>Initech SARL</td>
+                    <td><span class="badge badge-danger-soft">Bloque</span></td>
+                    <td>32 000 €</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h2 style="margin-top: var(--space-8);">Tooltip + modal</h2>
+        <div class="row g-2" style="margin-top: var(--space-4);">
+            <div class="col-auto">
+                <button class="btn btn-outline-secondary tooltip" data-tooltip="Info complementaire">Survoler moi</button>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#demo-modal">Ouvrir la modal</button>
+            </div>
+        </div>
+
+        <h2 style="margin-top: var(--space-8);">Pagination + avatar + spinner</h2>
+        <div class="pagination" style="margin-top: var(--space-4);">
+            <div class="page-item"><span class="page-link">&laquo;</span></div>
+            <div class="page-item active"><span class="page-link">1</span></div>
+            <div class="page-item"><span class="page-link">2</span></div>
+            <div class="page-item"><span class="page-link">3</span></div>
+            <div class="page-item disabled"><span class="page-link">&raquo;</span></div>
+        </div>
+
+        <div class="row g-3 align-items-center" style="margin-top: var(--space-4);">
+            <div class="col-auto avatar-group">
+                <span class="avatar">AF</span>
+                <span class="avatar">JD</span>
+                <span class="avatar">+3</span>
+            </div>
+            <div class="col-auto"><span class="avatar avatar-sm">SM</span></div>
+            <div class="col-auto"><span class="avatar avatar-lg">LG</span></div>
+            <div class="col-auto spinner"></div>
+            <div class="col-auto spinner spinner-lg"></div>
+        </div>
+    </div>
+
+    <div class="modal" id="demo-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title">Titre de la modal</span>
+                    <button class="btn-close" aria-label="Fermer" data-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="card-text">Contenu de la modal — ouverte/fermee via data-toggle="modal" / data-dismiss="modal" (assets/js/framework/components.js).</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
+                    <button class="btn btn-primary">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

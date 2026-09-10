@@ -49,8 +49,36 @@ return [
         // defaut : rien n'est construit tant qu'aucun bundle n'est declare.
         'output_dir' => 'public/build',
         'css' => [
+            'app' => [
+                // Ordre important : tokens (variables) avant tout ce qui les
+                // consomme, reset avant les composants, composants avant les
+                // styles applicatifs (app.css).
+                'input' => [
+                    'assets/css/framework/tokens.css',
+                    'assets/css/framework/reset.css',
+                    'assets/css/framework/grid.css',
+                    'assets/css/framework/components/buttons.css',
+                    'assets/css/framework/components/forms.css',
+                    'assets/css/framework/components/cards.css',
+                    'assets/css/framework/components/badges.css',
+                    'assets/css/framework/components/alerts.css',
+                    'assets/css/framework/components/navigation.css',
+                    'assets/css/framework/components/table.css',
+                    'assets/css/framework/components/overlay.css',
+                    'assets/css/framework/components/misc.css',
+                    'assets/css/app.css',
+                ],
+                'driver' => \Framework\Assets\Driver\ConcatMinifyDriver::class,
+            ],
         ],
         'js' => [
+            'app' => [
+                'input' => [
+                    'assets/js/framework/components.js',
+                    'assets/js/app.js',
+                ],
+                'driver' => \Framework\Assets\Driver\ConcatMinifyDriver::class,
+            ],
         ],
     ],
 

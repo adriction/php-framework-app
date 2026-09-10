@@ -1,0 +1,272 @@
+/*
+ * Formulaires — labels, champs texte/select/textarea, checkbox/radio/switch,
+ * etats de validation, tailles. S'appuie sur --color-focus-ring (tokens.css)
+ * pour rester coherent avec le focus des boutons.
+ */
+
+fieldset {
+    border: none;
+    padding: 0;
+}
+
+legend {
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-2);
+}
+
+.form-group {
+    margin-bottom: var(--space-4);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: var(--space-1);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text);
+}
+
+.form-label-optional {
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-muted);
+}
+
+/* ---------------------------------------------------------------------
+ * Champs texte / textarea / select — base commune
+ * --------------------------------------------------------------------- */
+.form-control,
+.form-select {
+    display: block;
+    width: 100%;
+    padding: var(--space-2) var(--space-3);
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    color: var(--color-text);
+    background: var(--color-bg);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-control::placeholder {
+    color: var(--color-text-muted);
+}
+
+.form-control:hover,
+.form-select:hover {
+    border-color: var(--color-border-strong);
+}
+
+.form-control:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+.form-control:disabled,
+.form-select:disabled,
+.form-control[readonly] {
+    background: var(--color-surface);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 6rem;
+}
+
+/* Fleche custom pour <select>, coherente entre navigateurs */
+.form-select {
+    appearance: none;
+    padding-inline-end: var(--space-8);
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    background-size: 1em;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23868e96' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* ---------------------------------------------------------------------
+ * Tailles — miroir de .btn-sm / .btn-lg
+ * --------------------------------------------------------------------- */
+.form-control-sm,
+.form-select-sm {
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-sm);
+    border-radius: var(--radius-sm);
+}
+
+.form-control-lg,
+.form-select-lg {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-lg);
+    border-radius: var(--radius-lg);
+}
+
+/* ---------------------------------------------------------------------
+ * Texte d'aide / etats de validation
+ * --------------------------------------------------------------------- */
+.form-text {
+    display: block;
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.is-invalid {
+    border-color: var(--color-danger) !important;
+}
+.is-invalid:focus {
+    box-shadow: 0 0 0 3px var(--color-danger-50) !important;
+}
+
+.is-valid {
+    border-color: var(--color-success) !important;
+}
+.is-valid:focus {
+    box-shadow: 0 0 0 3px var(--color-success-50) !important;
+}
+
+.invalid-feedback,
+.valid-feedback {
+    display: none;
+    margin-top: var(--space-1);
+    font-size: var(--font-size-sm);
+}
+
+.invalid-feedback { color: var(--color-danger); }
+.valid-feedback   { color: var(--color-success); }
+
+.is-invalid ~ .invalid-feedback,
+.is-valid ~ .valid-feedback {
+    display: block;
+}
+
+/* ---------------------------------------------------------------------
+ * Checkbox / radio — accent-color natif (supporte partout desormais),
+ * pas besoin de reconstruire la case a cocher a la main.
+ * --------------------------------------------------------------------- */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.form-check-input {
+    width: 1.125em;
+    height: 1.125em;
+    margin: 0;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.form-check-label {
+    font-size: var(--font-size-base);
+    color: var(--color-text);
+    cursor: pointer;
+    user-select: none;
+}
+
+.form-check-input:disabled ~ .form-check-label,
+.form-check-input:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* ---------------------------------------------------------------------
+ * Switch — bascule on/off construite sur un input[type=checkbox]
+ * ------------------------------------------------------------------- */
+.form-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.form-switch-input {
+    appearance: none;
+    position: relative;
+    width: 2.25rem;
+    height: 1.25rem;
+    margin: 0;
+    background: var(--color-gray-300);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.form-switch-input::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: calc(1.25rem - 4px);
+    height: calc(1.25rem - 4px);
+    background: var(--color-bg);
+    border-radius: 50%;
+    transition: transform var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.form-switch-input:checked {
+    background: var(--color-primary);
+}
+
+.form-switch-input:checked::after {
+    transform: translateX(1rem);
+}
+
+.form-switch-input:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+.form-switch-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------------
+ * Groupe d'input — accole un addon (texte/icone/bouton) a un .form-control
+ * --------------------------------------------------------------------- */
+.input-group {
+    display: flex;
+    align-items: stretch;
+}
+
+.input-group > .form-control {
+    border-radius: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.input-group > .form-control:first-child,
+.input-group > .input-group-text:first-child {
+    border-start-start-radius: var(--radius-md);
+    border-end-start-radius: var(--radius-md);
+}
+
+.input-group > .form-control:last-child,
+.input-group > .input-group-text:last-child {
+    border-start-end-radius: var(--radius-md);
+    border-end-end-radius: var(--radius-md);
+}
+
+.input-group > .form-control:not(:first-child) {
+    margin-inline-start: calc(-1 * var(--border-width));
+}
+
+.input-group-text {
+    display: flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    border: var(--border-width) solid var(--color-border);
+    white-space: nowrap;
+}

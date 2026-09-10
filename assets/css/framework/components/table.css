@@ -1,0 +1,64 @@
+/*
+ * Table — .table de base + variantes striped/hover/bordered/sm, wrapper
+ * responsive pour le scroll horizontal sur mobile.
+ */
+
+.table {
+    width: 100%;
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+}
+
+.table th,
+.table td {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.table thead th {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    border-bottom: var(--border-width) solid var(--color-border-strong);
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Alternance de fond une ligne sur deux */
+.table-striped tbody tr:nth-child(even) {
+    background: var(--color-surface);
+}
+
+/* Surbrillance de la ligne survolee */
+.table-hover tbody tr {
+    transition: background-color var(--transition-fast);
+}
+.table-hover tbody tr:hover {
+    background: var(--color-surface-hover);
+}
+
+/* Bordures verticales en plus des horizontales par defaut */
+.table-bordered th,
+.table-bordered td {
+    border: var(--border-width) solid var(--color-border);
+}
+
+/* Densite reduite */
+.table-sm th,
+.table-sm td {
+    padding: var(--space-2) var(--space-3);
+}
+
+/* Wrapper : scroll horizontal plutot que casser la mise en page sur mobile */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}

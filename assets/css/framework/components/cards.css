@@ -1,0 +1,104 @@
+/*
+ * Cards — conteneur .card + zones header/body/footer/image, variantes
+ * hover et horizontale. Pense pour s'inserer directement dans .row/.col-*
+ * ou .grid.grid-auto-fit (voir grid.css).
+ */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.card-hover {
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+.card-hover:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.card-img-top {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.card-header {
+    padding: var(--space-4);
+    border-bottom: var(--border-width) solid var(--color-border);
+    background: var(--color-surface);
+    font-weight: var(--font-weight-semibold);
+}
+
+.card-body {
+    flex: 1 1 auto;
+    padding: var(--space-4);
+}
+
+.card-footer {
+    padding: var(--space-4);
+    border-top: var(--border-width) solid var(--color-border);
+    background: var(--color-surface);
+}
+
+.card-title {
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text);
+}
+
+.card-subtitle {
+    margin-top: calc(-1 * var(--space-1));
+    margin-bottom: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+}
+
+.card-text {
+    color: var(--color-text);
+}
+
+.card-text + .card-text {
+    margin-top: var(--space-2);
+}
+
+/*
+ * Actions en pied de card body (ex. boutons) : espace regulier entre
+ * elements, sans dependre d'un .card-footer separe.
+ */
+.card-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+/* ---------------------------------------------------------------------
+ * Variante horizontale — image a gauche, contenu a droite (CSS Grid,
+ * bascule automatiquement en pile sur mobile).
+ * --------------------------------------------------------------------- */
+.card-horizontal {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.card-horizontal .card-img-top {
+    aspect-ratio: 16 / 9;
+}
+
+@media (min-width: 576px) {
+    .card-horizontal {
+        grid-template-columns: minmax(160px, 33%) 1fr;
+    }
+    .card-horizontal .card-img-top {
+        width: 100%;
+        height: 100%;
+        aspect-ratio: auto;
+    }
+}

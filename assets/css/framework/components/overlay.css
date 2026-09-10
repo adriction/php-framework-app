@@ -1,0 +1,148 @@
+/*
+ * Overlay — modal (backdrop + boite centree) et tooltip (pur CSS, sans JS).
+ * Utilise --z-overlay / --z-modal / --z-tooltip (tokens.css).
+ */
+
+/* ---------------------------------------------------------------------
+ * Modal
+ *
+ * Comme pour la navbar (navigation.css), l'ouverture/fermeture est pilotee
+ * par l'app via la classe .show — ce fichier ne definit que le rendu.
+ * --------------------------------------------------------------------- */
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: var(--z-overlay);
+}
+
+.modal-backdrop.show {
+    display: block;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    overflow-y: auto;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-dialog {
+    width: 100%;
+    max-width: 32rem;
+}
+
+.modal-dialog-sm { max-width: 24rem; }
+.modal-dialog-lg { max-width: 48rem; }
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    max-height: calc(100vh - var(--space-8));
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.modal-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+}
+
+.modal-body {
+    padding: var(--space-4);
+    overflow-y: auto;
+}
+
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    border-top: var(--border-width) solid var(--color-border);
+}
+
+/* ---------------------------------------------------------------------
+ * Tooltip — pur CSS, pas de JS ni de positionnement JS requis. S'appuie
+ * sur l'attribut data-tooltip de l'element declencheur.
+ *
+ * <button class="tooltip" data-tooltip="Texte d'aide">...</button>
+ * --------------------------------------------------------------------- */
+.tooltip {
+    position: relative;
+    display: inline-flex;
+}
+
+.tooltip::before,
+.tooltip::after {
+    position: absolute;
+    bottom: calc(100% + var(--space-2));
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-fast), visibility var(--transition-fast);
+    z-index: var(--z-tooltip);
+    pointer-events: none;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    padding: var(--space-1) var(--space-2);
+    background: var(--color-gray-900);
+    color: #fff;
+    font-size: var(--font-size-xs);
+    white-space: nowrap;
+    border-radius: var(--radius-sm);
+}
+
+.tooltip::before {
+    content: "";
+    bottom: 100%;
+    border: 5px solid transparent;
+    border-top-color: var(--color-gray-900);
+    margin-bottom: -3px;
+}
+
+.tooltip:hover::before,
+.tooltip:hover::after,
+.tooltip:focus-visible::before,
+.tooltip:focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Variante positionnee sous l'element plutot qu'au-dessus */
+.tooltip-bottom::before,
+.tooltip-bottom::after {
+    bottom: auto;
+    top: calc(100% + var(--space-2));
+}
+
+.tooltip-bottom::before {
+    top: 100%;
+    bottom: auto;
+    margin-bottom: 0;
+    margin-top: -3px;
+    border-top-color: transparent;
+    border-bottom-color: var(--color-gray-900);
+}

@@ -1,0 +1,241 @@
+/*
+ * Boutons — .btn + variantes couleur (pleine / outline), tailles, bloc,
+ * icone seule, etat de chargement. S'applique a <button>, <a class="btn">
+ * et <input type="submit" class="btn">.
+ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    border: var(--border-width) solid transparent;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-tight);
+    white-space: nowrap;
+    user-select: none;
+    cursor: pointer;
+    background: var(--color-surface);
+    color: var(--color-text);
+    transition: background-color var(--transition-fast), border-color var(--transition-fast),
+                color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.btn:hover {
+    background: var(--color-surface-hover);
+}
+
+.btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"],
+.btn.btn-disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------
+ * Variantes pleines — genere .btn-{couleur} avec fond de la couleur et
+ * texte inverse. Le pattern se repete a l'identique par couleur pour
+ * garder chaque regle lisible independamment (pas de selecteur groupe
+ * qui obligerait a retenir la liste des couleurs pour comprendre une regle).
+ * --------------------------------------------------------------------- */
+.btn-primary {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-text-inverse);
+}
+.btn-primary:hover  { background: var(--color-primary-hover); border-color: var(--color-primary-hover); }
+.btn-primary:active { background: var(--color-primary-active); border-color: var(--color-primary-active); }
+
+.btn-secondary {
+    background: var(--color-secondary);
+    border-color: var(--color-secondary);
+    color: var(--color-text-inverse);
+}
+.btn-secondary:hover  { background: var(--color-secondary-hover); border-color: var(--color-secondary-hover); }
+.btn-secondary:active { background: var(--color-secondary-active); border-color: var(--color-secondary-active); }
+
+.btn-success {
+    background: var(--color-success);
+    border-color: var(--color-success);
+    color: var(--color-text-inverse);
+}
+.btn-success:hover { background: var(--color-success-600); border-color: var(--color-success-600); }
+
+.btn-danger {
+    background: var(--color-danger);
+    border-color: var(--color-danger);
+    color: var(--color-text-inverse);
+}
+.btn-danger:hover { background: var(--color-danger-600); border-color: var(--color-danger-600); }
+
+.btn-warning {
+    background: var(--color-warning);
+    border-color: var(--color-warning);
+    color: var(--color-gray-900);
+}
+.btn-warning:hover { background: var(--color-warning-600); border-color: var(--color-warning-600); }
+
+.btn-info {
+    background: var(--color-info);
+    border-color: var(--color-info);
+    color: var(--color-text-inverse);
+}
+.btn-info:hover { background: var(--color-info-600); border-color: var(--color-info-600); }
+
+/* ---------------------------------------------------------------------
+ * Variantes "outline" — bordure coloree, fond transparent, se remplit au
+ * survol.
+ * --------------------------------------------------------------------- */
+.btn-outline-primary {
+    background: transparent;
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+.btn-outline-primary:hover { background: var(--color-primary-soft); }
+
+.btn-outline-secondary {
+    background: transparent;
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+}
+.btn-outline-secondary:hover { background: var(--color-secondary-soft); }
+
+.btn-outline-success {
+    background: transparent;
+    border-color: var(--color-success);
+    color: var(--color-success);
+}
+.btn-outline-success:hover { background: var(--color-success-50); }
+
+.btn-outline-danger {
+    background: transparent;
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+}
+.btn-outline-danger:hover { background: var(--color-danger-50); }
+
+.btn-outline-warning {
+    background: transparent;
+    border-color: var(--color-warning);
+    color: var(--color-warning-600);
+}
+.btn-outline-warning:hover { background: var(--color-warning-50); }
+
+.btn-outline-info {
+    background: transparent;
+    border-color: var(--color-info);
+    color: var(--color-info);
+}
+.btn-outline-info:hover { background: var(--color-info-50); }
+
+/* ---------------------------------------------------------------------
+ * Tailles
+ * --------------------------------------------------------------------- */
+.btn-sm {
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--font-size-sm);
+    border-radius: var(--radius-sm);
+}
+
+.btn-lg {
+    padding: var(--space-3) var(--space-6);
+    font-size: var(--font-size-lg);
+    border-radius: var(--radius-lg);
+}
+
+/* ---------------------------------------------------------------------
+ * Modificateurs de forme / layout
+ * --------------------------------------------------------------------- */
+.btn-block {
+    display: flex;
+    width: 100%;
+}
+
+.btn-icon {
+    padding: var(--space-2);
+    aspect-ratio: 1;
+}
+
+/* ---------------------------------------------------------------------
+ * Etat de chargement — masque le texte (garde sa largeur), affiche un
+ * spinner centre. Basculer via JS : element.classList.add('btn-loading')
+ * et desactiver le bouton (pointer-events deja coupe par [disabled]).
+ * --------------------------------------------------------------------- */
+.btn-loading {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+}
+
+.btn-loading::after {
+    content: "";
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    color: inherit;
+    animation: btn-spin 0.6s linear infinite;
+}
+
+/*
+ * ::after herite de color: transparent (regle du dessus) : on refixe une
+ * couleur explicite par variante pour que le spinner reste visible.
+ */
+.btn-primary.btn-loading::after,
+.btn-secondary.btn-loading::after,
+.btn-success.btn-loading::after,
+.btn-danger.btn-loading::after,
+.btn-info.btn-loading::after {
+    color: var(--color-text-inverse);
+}
+.btn-warning.btn-loading::after { color: var(--color-gray-900); }
+
+@keyframes btn-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ---------------------------------------------------------------------
+ * Groupe de boutons — accole plusieurs .btn sans espace, coins arrondis
+ * uniquement aux extremites.
+ * --------------------------------------------------------------------- */
+.btn-group {
+    display: inline-flex;
+}
+
+.btn-group > .btn {
+    border-radius: 0;
+    margin-inline-start: calc(-1 * var(--border-width));
+}
+
+.btn-group > .btn:first-child {
+    margin-inline-start: 0;
+    border-start-start-radius: var(--radius-md);
+    border-end-start-radius: var(--radius-md);
+}
+
+.btn-group > .btn:last-child {
+    border-start-end-radius: var(--radius-md);
+    border-end-end-radius: var(--radius-md);
+}
+
+.btn-group > .btn:hover,
+.btn-group > .btn:focus-visible {
+    position: relative;
+    z-index: 1;
+}
