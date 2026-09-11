@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Conventions de l'app — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Conventions de l'app</h1>
+    <p>Ce qui est propre à ce dépôt — pour l'architecture générale du framework (routing, Controller/Service/Repository, plugins), voir <a href="../../php-framework/docs/index.html"><code>../php-framework/docs/index.html</code></a>.</p>
+
+    <h2>Ajouter une page</h2>
+    <p>Un <code>Controller</code> (<code>src/App/Controller/</code>) qui rend un template Twig, exactement comme documenté dans <a href="../../php-framework/docs/controllers.html">Controllers / Services / Repositories</a> :</p>
+    <pre><code>namespace App\Controller;
+
+use Framework\Controller\AbstractController;
+use Framework\Http\Response;
+use Framework\Routing\Route;
+use Twig\Environment;
+
+class AboutController extends AbstractController
+{
+    public function __construct(Environment $twig)
+    {
+        parent::__construct($twig);
+    }
+
+    #[Route('/about', name: 'about', methods: ['GET'])]
+    public function index(): Response
+    {
+        return $this->render('about/index.html.twig');
+    }
+}</code></pre>
+    <p>Générateur : <code>make console make:controller About</code>. Le template étend <code>templates/layout.html.twig</code> :</p>
+    <pre><code>{% extends 'layout.html.twig' %}
+
+{% block title %}À propos{% endblock %}
+
+{% block body %}
+    &lt;div class="container"&gt;
+        &lt;h1&gt;À propos&lt;/h1&gt;
+    &lt;/div&gt;
+{% endblock %}</code></pre>
+    <p><code>layout.html.twig</code> fournit déjà la navbar, les blocks SEO/Open Graph (à valeur par défaut, une page ne surcharge que ce qui change — voir <a href="../../php-framework/docs/views.html">Vues (Twig)</a> du framework) et le chargement des bundles CSS/JS.</p>
+
+    <h2>Déclarer un bundle CSS/JS</h2>
+    <p>Dans <code>config/app.php</code>, section <code>assets</code> (mécanisme complet : <a href="../../php-framework/docs/assets.html"><code>../php-framework/docs/assets.html</code></a>) :</p>
+    <pre><code>'css' => [
+    'app' => [
+        'input' => [
+            'assets/css/framework/tokens.css',
+            'assets/css/framework/reset.css',
+            'assets/css/framework/grid.css',
+            'assets/css/framework/components/buttons.css',
+            // ... un fichier par composant, voir assets/css/framework/components/
+            'assets/css/app.css',   // styles propres à l'app, après le framework
+        ],
+        'driver' => \Framework\Assets\Driver\ConcatMinifyDriver::class,
+    ],
+],
+'js' => [
+    'app' => [
+        'input' => [
+            'assets/js/framework/components.js',
+            'assets/js/app.js',
+        ],
+        'driver' => \Framework\Assets\Driver\ConcatMinifyDriver::class,
+    ],
+],</code></pre>
+    <p>Ordre important : tokens avant tout ce qui les consomme, reset avant les composants, composants avant les styles propres à l'app (<code>assets/css/app.css</code>) qui peuvent alors surcharger le framework si besoin. Après toute modif : <code>make console assets:build</code>.</p>
+
+    <h2>Style guide</h2>
+    <p><code>/styleguide</code> (<code>src/App/Controller/StyleGuideController.php</code>, <code>templates/styleguide/index.html.twig</code>) rassemble un exemplaire de chaque composant — à consulter après toute modification de <code>tokens.css</code> ou d'un fichier de <code>components/</code> pour vérifier visuellement le rendu. Cette doc-ci (<code>docs/</code>) en est le complément écrit (classes/variables disponibles), pas un remplacement.</p>
+</main>
+</body>
+</html>

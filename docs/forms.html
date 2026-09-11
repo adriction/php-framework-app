@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaires — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Formulaires</h1>
+    <p><code>assets/css/framework/components/forms.css</code>. Rendu live : <a href="/styleguide"><code>/styleguide</code></a>.</p>
+
+    <h2>Champs texte / textarea / select</h2>
+    <pre><code>&lt;div class="form-group"&gt;
+    &lt;label class="form-label" for="email"&gt;Email&lt;/label&gt;
+    &lt;input class="form-control" type="email" id="email"&gt;
+    &lt;span class="form-text"&gt;Texte d'aide.&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+    <table>
+        <tr><th>Classe</th><th>Rôle</th></tr>
+        <tr><td><code>.form-group</code></td><td>Conteneur d'un champ (marge basse)</td></tr>
+        <tr><td><code>.form-label</code></td><td>Label</td></tr>
+        <tr><td><code>.form-control</code></td><td><code>&lt;input&gt;</code>/<code>&lt;textarea&gt;</code> — focus, disabled/readonly gérés</td></tr>
+        <tr><td><code>.form-select</code></td><td><code>&lt;select&gt;</code>, flèche custom cross-navigateur</td></tr>
+        <tr><td><code>.form-control-sm</code> / <code>.form-control-lg</code> (idem <code>-select-</code>)</td><td>Tailles, miroir de <code>.btn-sm</code>/<code>.btn-lg</code></td></tr>
+        <tr><td><code>.form-text</code></td><td>Texte d'aide sous le champ</td></tr>
+    </table>
+
+    <h2>Validation</h2>
+    <pre><code>&lt;input class="form-control is-invalid" type="text"&gt;
+&lt;div class="invalid-feedback"&gt;Ce champ est requis.&lt;/div&gt;</code></pre>
+    <p><code>.is-invalid</code> / <code>.is-valid</code> sur le champ (bordure + anneau de focus colorés) ; <code>.invalid-feedback</code> / <code>.valid-feedback</code> sur l'élément suivant, affiché automatiquement via le sélecteur <code>~</code> (pas besoin de JS pour l'afficher/masquer).</p>
+
+    <h2>Checkbox / radio / switch</h2>
+    <pre><code>&lt;div class="form-check"&gt;
+    &lt;input class="form-check-input" type="checkbox" id="cgu"&gt;
+    &lt;label class="form-check-label" for="cgu"&gt;J'accepte les conditions&lt;/label&gt;
+&lt;/div&gt;
+
+&lt;label class="form-switch"&gt;
+    &lt;input class="form-switch-input" type="checkbox" checked&gt;
+    &lt;span class="form-check-label"&gt;Notifications actives&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+    <p><code>.form-check-input</code> utilise <code>accent-color</code> natif (pas de case reconstruite à la main). <code>.form-switch-input</code> est une bascule on/off pur CSS bâtie sur un <code>input[type=checkbox]</code>.</p>
+
+    <h2>Groupe d'input</h2>
+    <pre><code>&lt;div class="input-group"&gt;
+    &lt;span class="input-group-text"&gt;https://&lt;/span&gt;
+    &lt;input class="form-control" type="text"&gt;
+&lt;/div&gt;</code></pre>
+    <p><code>.input-group</code> accole un <code>.form-control</code> et un ou plusieurs <code>.input-group-text</code> (icône, texte, bouton) sans espace entre eux.</p>
+</main>
+</body>
+</html>

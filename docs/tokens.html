@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tokens — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Tokens</h1>
+    <p><code>assets/css/framework/tokens.css</code> — toutes les variables CSS consommées par les composants du framework. Ne jamais mettre de valeur en dur (couleur, espacement, rayon...) dans un composant : toujours passer par un de ces tokens. Remplacer les valeurs <code>--color-primary-*</code> suffit à rebrander tout le framework.</p>
+
+    <h2>Couleurs — échelles primitives</h2>
+    <p>Gris (<code>--color-gray-50</code> à <code>900</code>), accent (<code>--color-primary-50</code> à <code>900</code>), et trois nuances par statut (<code>--color-success-50/500/600</code>, idem <code>warning</code>/<code>danger</code>/<code>info</code>).</p>
+
+    <h2>Couleurs — alias sémantiques</h2>
+    <p>Ce que consomment réellement les composants (pas les échelles primitives directement) :</p>
+    <table>
+        <tr><th>Variable</th><th>Rôle</th></tr>
+        <tr><td><code>--color-bg</code></td><td>Fond de page</td></tr>
+        <tr><td><code>--color-surface</code></td><td>Fond légèrement distinct (header de card, table striped...)</td></tr>
+        <tr><td><code>--color-surface-hover</code></td><td>Fond au survol</td></tr>
+        <tr><td><code>--color-border</code> / <code>--color-border-strong</code></td><td>Bordures</td></tr>
+        <tr><td><code>--color-text</code> / <code>--color-text-muted</code> / <code>--color-text-inverse</code></td><td>Texte principal / atténué / sur fond coloré</td></tr>
+        <tr><td><code>--color-primary</code> / <code>-hover</code> / <code>-active</code> / <code>-soft</code></td><td>Accent (boutons, liens actifs, focus)</td></tr>
+        <tr><td><code>--color-secondary</code> / <code>-hover</code> / <code>-active</code> / <code>-soft</code></td><td>Variante neutre (grise) du primary</td></tr>
+        <tr><td><code>--color-success</code> / <code>-warning</code> / <code>-danger</code> / <code>-info</code></td><td>Statuts</td></tr>
+        <tr><td><code>--color-focus-ring</code></td><td>Anneau de focus clavier (<code>box-shadow</code>)</td></tr>
+    </table>
+
+    <h2>Typographie</h2>
+    <table>
+        <tr><th>Variable</th><th>Valeur</th></tr>
+        <tr><td><code>--font-family-base</code> / <code>--font-family-mono</code></td><td>System font stack / monospace</td></tr>
+        <tr><td><code>--font-size-xs</code> → <code>--font-size-4xl</code></td><td>12px à 36px</td></tr>
+        <tr><td><code>--font-weight-normal</code> / <code>-medium</code> / <code>-semibold</code> / <code>-bold</code></td><td>400/500/600/700</td></tr>
+        <tr><td><code>--line-height-tight</code> / <code>-base</code> / <code>-loose</code></td><td>1.2 / 1.5 / 1.75</td></tr>
+    </table>
+
+    <h2>Espacements</h2>
+    <p>Base 4px : <code>--space-0</code>, <code>-1</code> (4px), <code>-2</code> (8px), <code>-3</code> (12px), <code>-4</code> (16px), <code>-5</code> (20px), <code>-6</code> (24px), <code>-8</code> (32px), <code>-10</code> (40px), <code>-12</code> (48px), <code>-16</code> (64px), <code>-20</code> (80px).</p>
+
+    <h2>Rayons, ombres, autres</h2>
+    <table>
+        <tr><th>Variable</th><th>Valeur</th></tr>
+        <tr><td><code>--radius-sm</code> / <code>-md</code> / <code>-lg</code> / <code>-xl</code> / <code>-full</code></td><td>4px / 8px / 12px / 16px / pilule</td></tr>
+        <tr><td><code>--shadow-sm</code> → <code>--shadow-xl</code></td><td>4 niveaux de profondeur</td></tr>
+        <tr><td><code>--border-width</code></td><td>1px</td></tr>
+        <tr><td><code>--transition-fast</code> / <code>-base</code> / <code>-slow</code></td><td>120ms / 200ms / 320ms ease</td></tr>
+        <tr><td><code>--z-dropdown</code> / <code>-sticky</code> / <code>-overlay</code> / <code>-modal</code> / <code>-toast</code> / <code>-tooltip</code></td><td>1000 → 1060, ordre croissant d'empilement</td></tr>
+    </table>
+
+    <h2>Grille / conteneur</h2>
+    <p><code>--breakpoint-sm</code> à <code>-xxl</code> (576/768/992/1200/1400px) sont documentées ici pour référence (accessibles en JS via <code>getComputedStyle</code>) mais <strong>ne peuvent pas être utilisées dans une condition <code>@media</code></strong> (les custom properties ne sont pas résolues à cet endroit) — <code>grid.css</code> reprend ces valeurs en dur. Voir <a href="grid.html">Grille</a>. <code>--container-max-width</code>, <code>--grid-columns</code>, <code>--grid-gap</code> complètent le système.</p>
+
+    <h2>Thème sombre</h2>
+    <p>Les alias sémantiques ci-dessus sont resurchargés sous <code>[data-theme="dark"]</code> (choix explicite, ex. toggle utilisateur) et <code>prefers-color-scheme: dark</code> (préférence système, seulement si aucun thème n'est forcé). Les échelles primitives ne changent pas — seuls les alias (<code>--color-bg</code>, <code>--color-text</code>...) sont remappés.</p>
+</main>
+</body>
+</html>

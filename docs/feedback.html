@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Badges &amp; alertes — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Badges &amp; alertes</h1>
+    <p>Rendu live : <a href="/styleguide"><code>/styleguide</code></a>.</p>
+
+    <h2>Badges</h2>
+    <p><code>assets/css/framework/components/badges.css</code> — pastilles de statut courtes.</p>
+    <pre><code>&lt;span class="badge badge-success"&gt;Actif&lt;/span&gt;
+&lt;span class="badge badge-danger-soft"&gt;Bloqué&lt;/span&gt;
+&lt;span class="badge-dot badge-dot-success"&gt;&lt;/span&gt; En ligne</code></pre>
+    <table>
+        <tr><th>Classe</th><th>Rôle</th></tr>
+        <tr><td><code>.badge-{primary,secondary,success,danger,warning,info}</code></td><td>Pastille pleine, texte inverse</td></tr>
+        <tr><td><code>.badge-{couleur}-soft</code></td><td>Fond pâle, texte coloré — plus discret dans une liste dense</td></tr>
+        <tr><td><code>.badge-dot</code> (+ <code>.badge-dot-{couleur}</code>)</td><td>Point de statut sans texte, à placer devant un libellé</td></tr>
+    </table>
+
+    <h2>Alertes</h2>
+    <p><code>assets/css/framework/components/alerts.css</code> — bandeau de message avec bordure gauche accentuée.</p>
+    <pre><code>&lt;div class="alert alert-danger alert-dismissible"&gt;
+    &lt;div class="alert-body"&gt;
+        &lt;div class="alert-title"&gt;Erreur&lt;/div&gt;
+        Une erreur est survenue.
+    &lt;/div&gt;
+    &lt;button class="btn-close" aria-label="Fermer" data-dismiss="alert"&gt;&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+    <table>
+        <tr><th>Classe</th><th>Rôle</th></tr>
+        <tr><td><code>.alert-{success,danger,warning,info}</code></td><td>Fond doux, bordure gauche accentuée de la couleur</td></tr>
+        <tr><td><code>.alert-title</code> / <code>.alert-body</code></td><td>Structure interne</td></tr>
+        <tr><td><code>.alert-dismissible</code> + <code>.btn-close</code></td><td>Bouton de fermeture (X pur CSS, pas d'icône externe) — <code>data-dismiss="alert"</code> requis pour le comportement JS, voir <a href="javascript.html">JavaScript</a></td></tr>
+    </table>
+</main>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>JavaScript</h1>
+    <p><code>assets/js/framework/components.js</code> — un seul fichier, vanilla, sans dépendance. Piloté entièrement par des attributs <code>data-*</code> sur le HTML : rien à instancier côté app, un seul script chargé une fois dans <code>templates/layout.html.twig</code> (<code>{{ asset('app.js') }}</code>) suffit.</p>
+    <p>Tooltip, boutons, formulaires, cards, badges, table, pagination, avatar, spinner sont purement CSS et n'ont besoin d'aucun JS.</p>
+
+    <h2>API</h2>
+    <table>
+        <tr><th>Composant</th><th>Attributs</th></tr>
+        <tr><td>Collapse (menu mobile navbar, panneau repliable)</td><td><code>data-toggle="collapse"</code> sur le déclencheur + <code>data-target="#id"</code> vers l'élément à basculer — bascule sa classe <code>.show</code></td></tr>
+        <tr><td>Onglets</td><td><code>data-toggle="tab"</code> + <code>data-target="#id"</code> sur chaque <code>.nav-link</code> d'un <code>.nav-tabs</code> ; les panneaux ciblés doivent être frères sous un <code>.tab-content</code></td></tr>
+        <tr><td>Modal</td><td><code>data-toggle="modal"</code> + <code>data-target="#id"</code> pour ouvrir ; <code>data-dismiss="modal"</code> sur n'importe quel bouton à l'intérieur pour fermer. Fermeture aussi via <kbd>Échap</kbd> ou clic sur le backdrop</td></tr>
+        <tr><td>Alerte fermable</td><td><code>data-dismiss="alert"</code> sur le <code>.btn-close</code> — retire l'élément <code>.alert</code> parent du DOM</td></tr>
+    </table>
+
+    <h2>Détails d'implémentation utiles</h2>
+    <ul>
+        <li><strong>Modal</strong> : un seul backdrop (<code>.modal-backdrop</code>) est créé à la demande et réutilisé pour n'importe quel modal — pas besoin d'en déclarer un par modal dans le HTML. <code>document.body.style.overflow</code> est mis à <code>hidden</code> tant qu'un modal est ouvert.</li>
+        <li><strong>Onglets</strong> : le groupe de liens actifs est déterminé par le <code>.nav-tabs</code> parent le plus proche du lien cliqué ; le groupe de panneaux par le parent direct du panneau ciblé — deux groupes d'onglets indépendants sur la même page ne se marchent pas dessus tant que chacun a son propre <code>.nav-tabs</code>/<code>.tab-content</code>.</li>
+        <li>Tout est branché via délégation d'événements sur <code>document</code> (un seul listener par type d'interaction) — fonctionne aussi pour du contenu ajouté dynamiquement au DOM après le chargement initial.</li>
+    </ul>
+
+    <h2>Étendre</h2>
+    <p>Pas de mécanisme de plugin JS dédié : pour un nouveau comportement, ajouter un bloc dans <code>components.js</code> suivant le même pattern (délégation sur <code>document</code>, attribut <code>data-*</code> dédié) plutôt que d'introduire une dépendance externe.</p>
+</main>
+</body>
+</html>

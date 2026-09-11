@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagination, avatar, spinner — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Pagination, avatar, spinner</h1>
+    <p><code>assets/css/framework/components/misc.css</code>. Rendu live : <a href="/styleguide"><code>/styleguide</code></a>.</p>
+
+    <h2>Pagination</h2>
+    <pre><code>&lt;div class="pagination"&gt;
+    &lt;div class="page-item"&gt;&lt;span class="page-link"&gt;«&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="page-item active"&gt;&lt;span class="page-link"&gt;1&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="page-item"&gt;&lt;span class="page-link"&gt;2&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="page-item disabled"&gt;&lt;span class="page-link"&gt;»&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p><code>.page-item.active</code> pour la page courante, <code>.page-item.disabled</code> pour un contrôle inactif (<code>pointer-events: none</code>).</p>
+
+    <h2>Avatar</h2>
+    <pre><code>&lt;span class="avatar"&gt;AF&lt;/span&gt;
+&lt;span class="avatar avatar-lg"&gt;&lt;img src="..."&gt;&lt;/span&gt;
+
+&lt;div class="avatar-group"&gt;
+    &lt;span class="avatar"&gt;AF&lt;/span&gt;
+    &lt;span class="avatar"&gt;JD&lt;/span&gt;
+    &lt;span class="avatar"&gt;+3&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+    <table>
+        <tr><th>Classe</th><th>Rôle</th></tr>
+        <tr><td><code>.avatar</code></td><td>Cercle 40px, initiales ou <code>&lt;img&gt;</code> (object-fit cover)</td></tr>
+        <tr><td><code>.avatar-sm</code> / <code>-lg</code> / <code>-xl</code></td><td>28px / 56px / 80px</td></tr>
+        <tr><td><code>.avatar-group</code></td><td>Pile d'avatars qui se chevauchent (bordure blanche, marge négative)</td></tr>
+    </table>
+
+    <h2>Spinner</h2>
+    <pre><code>&lt;span class="spinner"&gt;&lt;/span&gt;
+&lt;span class="spinner spinner-lg"&gt;&lt;/span&gt;</code></pre>
+    <p>Cercle en rotation pur CSS (<code>border</code> + <code>@keyframes</code>). <code>.spinner-sm</code> / <code>.spinner-lg</code> pour la taille. Même mécanique que <code>.btn-loading</code> (voir <a href="buttons.html">Boutons</a>) mais utilisable seul, hors bouton.</p>
+</main>
+</body>
+</html>

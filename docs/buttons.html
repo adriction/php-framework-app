@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Boutons — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Boutons</h1>
+    <p><code>assets/css/framework/components/buttons.css</code> — s'applique à <code>&lt;button&gt;</code>, <code>&lt;a class="btn"&gt;</code> ou <code>&lt;input type="submit"&gt;</code>. Rendu live : <a href="/styleguide"><code>/styleguide</code></a>.</p>
+
+    <pre><code>&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;</code></pre>
+
+    <h2>Variantes couleur</h2>
+    <p>Pleines : <code>.btn-primary</code>, <code>.btn-secondary</code>, <code>.btn-success</code>, <code>.btn-danger</code>, <code>.btn-warning</code>, <code>.btn-info</code>. Outline (fond transparent, se remplit au survol) : <code>.btn-outline-primary</code>, <code>.btn-outline-secondary</code>, <code>.btn-outline-success</code>, <code>.btn-outline-danger</code>, <code>.btn-outline-warning</code>, <code>.btn-outline-info</code>.</p>
+
+    <h2>Tailles</h2>
+    <table>
+        <tr><th>Classe</th><th>Effet</th></tr>
+        <tr><td>(aucune)</td><td>Taille de base</td></tr>
+        <tr><td><code>.btn-sm</code></td><td>Compact</td></tr>
+        <tr><td><code>.btn-lg</code></td><td>Grand</td></tr>
+    </table>
+
+    <h2>États et modificateurs</h2>
+    <table>
+        <tr><th>Classe / attribut</th><th>Effet</th></tr>
+        <tr><td><code>disabled</code> (attribut natif)</td><td>Opacité réduite, <code>pointer-events: none</code></td></tr>
+        <tr><td><code>.btn-loading</code></td><td>Masque le texte (garde la largeur), affiche un spinner CSS pur — à basculer en JS au moment d'une action async</td></tr>
+        <tr><td><code>.btn-block</code></td><td>Largeur 100%</td></tr>
+        <tr><td><code>.btn-icon</code></td><td>Carré, pour un bouton icône seule</td></tr>
+    </table>
+
+    <h2>Groupe de boutons</h2>
+    <pre><code>&lt;div class="btn-group"&gt;
+    &lt;button class="btn btn-outline-secondary"&gt;Jour&lt;/button&gt;
+    &lt;button class="btn btn-outline-secondary"&gt;Semaine&lt;/button&gt;
+    &lt;button class="btn btn-outline-secondary"&gt;Mois&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+    <p><code>.btn-group</code> accole plusieurs <code>.btn</code> sans espace, coins arrondis uniquement aux extrémités.</p>
+</main>
+</body>
+</html>

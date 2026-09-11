@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Grille — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Grille</h1>
+    <p><code>assets/css/framework/grid.css</code> — système 12 colonnes construit sur <strong>CSS Grid</strong> (pas flexbox), API proche de Bootstrap pour rester familière. Breakpoints repris en dur (cohérents avec <code>--breakpoint-*</code> de <a href="tokens.html">tokens.css</a>, qui ne peuvent pas être utilisées dans une condition <code>@media</code>) : <code>sm</code> 576 / <code>md</code> 768 / <code>lg</code> 992 / <code>xl</code> 1200 / <code>xxl</code> 1400.</p>
+
+    <h2>Conteneur</h2>
+    <pre><code>&lt;div class="container"&gt;...&lt;/div&gt;       &lt;!-- largeur max responsive --&gt;
+&lt;div class="container-fluid"&gt;...&lt;/div&gt; &lt;!-- 100% --&gt;</code></pre>
+
+    <h2>Row / Col — 12 colonnes</h2>
+    <p><code>.row</code> est un <code>display: grid</code> à 12 colonnes ; <code>grid-auto-flow</code> fait passer automatiquement les colonnes à la ligne dès que la somme des spans dépasse 12, comme le ferait <code>flex-wrap</code>.</p>
+    <pre><code>&lt;div class="row g-3"&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;...&lt;/div&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;...&lt;/div&gt;
+    &lt;div class="col-12 col-md-6 col-lg-4"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <table>
+        <tr><th>Classe</th><th>Rôle</th></tr>
+        <tr><td><code>.col-1</code> → <code>.col-12</code></td><td>Span de base (s'applique dès <code>xs</code>), mobile-first</td></tr>
+        <tr><td><code>.col-{sm,md,lg,xl,xxl}-1</code> → <code>-12</code></td><td>Span à partir du breakpoint donné</td></tr>
+        <tr><td><code>.col-auto</code> / <code>.col-{bp}-auto</code></td><td>Colonne à largeur de contenu (<code>fit-content</code>)</td></tr>
+        <tr><td><code>.offset-0</code> → <code>.offset-11</code> (+ variantes <code>-{bp}-</code>)</td><td>Décale le début de colonne sans occuper l'espace</td></tr>
+    </table>
+
+    <h3>Espacement (gap)</h3>
+    <table>
+        <tr><th>Classe</th><th>Effet</th></tr>
+        <tr><td><code>.g-0</code> → <code>.g-5</code></td><td><code>gap</code> (lignes + colonnes)</td></tr>
+        <tr><td><code>.gx-0</code> → <code>.gx-5</code></td><td><code>column-gap</code> seul</td></tr>
+        <tr><td><code>.gy-0</code> → <code>.gy-5</code></td><td><code>row-gap</code> seul</td></tr>
+    </table>
+
+    <h3>Alignement</h3>
+    <p><code>.align-items-{start,center,end,stretch}</code>, <code>.justify-content-{start,center,end,between,around}</code> sur <code>.row</code>.</p>
+
+    <h2>CSS Grid utilitaire — mises en page libres</h2>
+    <p>Pour les cas qui n'ont pas besoin du découpage en 12 (dashboards, listes de cards) :</p>
+    <pre><code>&lt;div class="grid grid-auto-fit g-3"&gt;
+    &lt;div class="card"&gt;...&lt;/div&gt;
+    &lt;div class="card"&gt;...&lt;/div&gt;
+    &lt;div class="card"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <table>
+        <tr><th>Classe</th><th>Rôle</th></tr>
+        <tr><td><code>.grid</code></td><td><code>display: grid</code> + <code>gap: var(--grid-gap)</code></td></tr>
+        <tr><td><code>.grid-cols-{2,3,4,6}</code> (+ <code>-md-</code>/<code>-lg-</code>)</td><td>Nombre de colonnes fixe, responsive</td></tr>
+        <tr><td><code>.grid-auto-fit</code></td><td>Autant de colonnes de largeur min <code>--grid-auto-min</code> (240px par défaut, surchargeable) que la place le permet — sans media query, la dernière ligne s'étire pour combler l'espace</td></tr>
+    </table>
+
+    <p>Exemple complet en rendu live : <a href="/styleguide"><code>/styleguide</code></a> (sections "Grille").</p>
+</main>
+</body>
+</html>

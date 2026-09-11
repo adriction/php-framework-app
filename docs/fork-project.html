@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>fork-project.sh — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>fork-project.sh</h1>
+    <p><code>bin/fork-project.sh</code> crée un <strong>nouveau projet indépendant</strong> à partir de ce dépôt — un vrai fork git en dossier frère, pas une copie de fichiers. Pensé pour démarrer une app séparée (ex. un portfolio) qui réutilise la base (framework CSS/JS, structure, Docker) sans rester couplée au développement de <code>php-framework-app</code> lui-même.</p>
+
+    <h2>Usage</h2>
+    <pre><code>bin/fork-project.sh &lt;nom-du-projet&gt; [app-port] [db-port]
+
+bin/fork-project.sh monportfolio
+bin/fork-project.sh monportfolio 8094 3313</code></pre>
+    <p>Les ports sont optionnels : s'ils sont omis, le script scanne les ports déjà occupés (<code>ss -tln</code>) et choisit les premiers libres à partir de 8093/3312.</p>
+
+    <h2>Ce qu'il fait</h2>
+    <table>
+        <tr><th>Étape</th><th>Détail</th></tr>
+        <tr><td>Clone</td><td><code>git clone</code> vers <code>../&lt;nom-du-projet&gt;</code> — historique complet préservé</td></tr>
+        <tr><td>Remotes</td><td><code>upstream</code> pointant sur ce dépôt, <strong>fetch-only</strong> (URL de push volontairement invalide — un <code>git push</code> sans argument va toujours vers <code>origin</code>, jamais vers <code>php-framework-app</code>) ; <code>origin</code> vers le futur dépôt GitHub du nouveau projet (à créer toi-même, voir ci-dessous)</td></tr>
+        <tr><td>Lien vers <code>adrien/php-framework</code></td><td>Passe d'un repository Composer <code>path</code> (symlink dev local) à un vrai lien <code>vcs</code> (clone git via SSH, branche <code>dev-main</code>) — le nouveau projet ne reflète plus les modifs locales du framework, <code>composer update adrien/php-framework</code> pour en récupérer une évolution</td></tr>
+        <tr><td>Docker</td><td>Ajoute <code>openssh-client</code> au Dockerfile, forwarde l'agent SSH de l'hôte (nécessaire au clone <code>vcs</code> d'un dépôt privé) à la place du mount local de <code>php-framework</code>, nom de projet Docker Compose et ports dédiés</td></tr>
+        <tr><td>Identité</td><td>Renomme <code>composer.json</code>, <code>README.md</code>, <code>CLAUDE.md</code> (+ section expliquant ce workflow de fork), <code>.env.example</code>, la navbar et la page d'accueil (placeholder, pas de faux contenu)</td></tr>
+    </table>
+
+    <h2>Prérequis</h2>
+    <ul>
+        <li>Un agent SSH actif sur l'hôte avec la clé qui a accès aux dépôts GitHub concernés (<code>ssh-add -l</code> pour vérifier) — c'est cette même clé qui est forwardée dans le conteneur, aucune clé n'est copiée.</li>
+        <li>Le dépôt GitHub du nouveau projet doit être créé <strong>à la main, vide</strong> (sans README/gitignore auto-généré) avant de pousser — le script n'a pas accès à l'API GitHub (pas de <code>gh</code> CLI).</li>
+    </ul>
+
+    <h2>Après le fork</h2>
+    <pre><code>cd ../&lt;nom-du-projet&gt;
+cp .env.example .env   # editer APP_SECRET
+make install           # build + composer install (clone SSH de adrien/php-framework)
+make console assets:build
+git push -u origin main   # une fois le dépôt GitHub créé</code></pre>
+
+    <h2>Récupérer les évolutions en amont</h2>
+    <p>Jamais automatique — à la demande, depuis le nouveau projet :</p>
+    <pre><code>git fetch upstream
+git merge upstream/main</code></pre>
+</main>
+</body>
+</html>

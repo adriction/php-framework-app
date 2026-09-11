@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cards — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Cards</h1>
+    <p><code>assets/css/framework/components/cards.css</code>. Pensé pour s'insérer dans <a href="grid.html"><code>.row</code>/<code>.col-*</code> ou <code>.grid.grid-auto-fit</code></a>. Rendu live : <a href="/styleguide"><code>/styleguide</code></a>.</p>
+
+    <pre><code>&lt;div class="card card-hover"&gt;
+    &lt;div class="card-header"&gt;En-tête&lt;/div&gt;
+    &lt;div class="card-body"&gt;
+        &lt;h3 class="card-title"&gt;Titre&lt;/h3&gt;
+        &lt;p class="card-subtitle"&gt;Sous-titre&lt;/p&gt;
+        &lt;p class="card-text"&gt;Texte.&lt;/p&gt;
+        &lt;div class="card-actions"&gt;
+            &lt;button class="btn btn-primary btn-sm"&gt;Action&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="card-footer"&gt;Pied&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <table>
+        <tr><th>Classe</th><th>Rôle</th></tr>
+        <tr><td><code>.card</code></td><td>Conteneur (bordure, radius, ombre légère)</td></tr>
+        <tr><td><code>.card-header</code> / <code>.card-footer</code></td><td>Zones optionnelles, fond distinct</td></tr>
+        <tr><td><code>.card-body</code></td><td>Contenu principal</td></tr>
+        <tr><td><code>.card-title</code> / <code>.card-subtitle</code> / <code>.card-text</code></td><td>Typo interne</td></tr>
+        <tr><td><code>.card-actions</code></td><td>Ligne de boutons en pied de body</td></tr>
+        <tr><td><code>.card-img-top</code></td><td>Image pleine largeur (ratio 16/9)</td></tr>
+        <tr><td><code>.card-hover</code></td><td>Effet de lift (ombre + translation) au survol</td></tr>
+        <tr><td><code>.card-horizontal</code></td><td>Image à gauche / contenu à droite (CSS Grid), bascule en pile sur mobile</td></tr>
+    </table>
+</main>
+</body>
+</html>

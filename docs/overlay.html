@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modal &amp; tooltip — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Modal &amp; tooltip</h1>
+    <p><code>assets/css/framework/components/overlay.css</code>, utilise <code>--z-overlay</code>/<code>--z-modal</code>/<code>--z-tooltip</code> (<a href="tokens.html">tokens</a>). Rendu live : <a href="/styleguide"><code>/styleguide</code></a>.</p>
+
+    <h2>Modal</h2>
+    <pre><code>&lt;button class="btn btn-primary" data-toggle="modal" data-target="#demo"&gt;Ouvrir&lt;/button&gt;
+
+&lt;div class="modal" id="demo"&gt;
+    &lt;div class="modal-dialog"&gt;
+        &lt;div class="modal-content"&gt;
+            &lt;div class="modal-header"&gt;
+                &lt;span class="modal-title"&gt;Titre&lt;/span&gt;
+                &lt;button class="btn-close" data-dismiss="modal"&gt;&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class="modal-body"&gt;...&lt;/div&gt;
+            &lt;div class="modal-footer"&gt;
+                &lt;button class="btn btn-outline-secondary" data-dismiss="modal"&gt;Annuler&lt;/button&gt;
+                &lt;button class="btn btn-primary"&gt;Confirmer&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p>Le backdrop (<code>.modal-backdrop</code>) est créé et géré automatiquement par le JS — pas besoin de le déclarer dans le HTML (voir <a href="javascript.html">JavaScript</a>). <code>.modal-dialog-sm</code> / <code>.modal-dialog-lg</code> pour ajuster la largeur.</p>
+
+    <h2>Tooltip</h2>
+    <pre><code>&lt;button class="btn btn-outline-secondary tooltip" data-tooltip="Info complémentaire"&gt;
+    Survoler moi
+&lt;/button&gt;</code></pre>
+    <p>Pur CSS (<code>::before</code>/<code>::after</code> + <code>attr(data-tooltip)</code>), affiché au survol/focus — aucun JS de positionnement requis. <code>.tooltip-bottom</code> pour l'afficher sous l'élément plutôt qu'au-dessus.</p>
+</main>
+</body>
+</html>

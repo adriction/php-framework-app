@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Démarrage — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Démarrage</h1>
+    <pre><code>make install
+make up</code></pre>
+    <p>Puis ouvrir <code>http://localhost:8092</code> (port configurable dans <code>.env</code>, clé <code>APP_PORT</code>).</p>
+
+    <h2>Ports locaux (Docker)</h2>
+    <p><code>APP_PORT=8092</code> et <code>DB_EXPOSED_PORT=3311</code> par défaut — choisis pour ne pas entrer en conflit avec d'autres projets locaux. Un projet créé via <a href="fork-project.html"><code>bin/fork-project.sh</code></a> reçoit automatiquement des ports libres différents.</p>
+
+    <h2>Structure du dépôt</h2>
+    <pre><code>bin/console          # CLI (fourni par Framework\Kernel + Framework\Console\Application)
+bin/fork-project.sh  # crée un nouveau projet indépendant à partir de celui-ci
+src/App/             # Controller / Service / Repository de cette app
+templates/           # vues Twig, dont layout.html.twig (navbar, blocks SEO)
+assets/css/framework/    # tokens, reset, grille, composants CSS (voir Tokens, Grille...)
+assets/js/framework/     # components.js — comportements JS des composants
+config/app.php       # config lue par Framework\Config\Config (bundles assets, mailer, DB...)
+docker/              # PHP 8.4 + nginx + MariaDB
+docs/                # cette documentation</code></pre>
+
+    <h2>Architecture</h2>
+    <p>Héritée du framework, non négociable : <code>Controller → Service → Repository → DB</code>. Détails complets (routing, DI, plugins, CLI, base de données...) : <a href="../../php-framework/docs/index.html"><code>../php-framework/docs/index.html</code></a> — à consulter avant d'ajouter une feature ici plutôt que de redéfinir des conventions. Cette doc-ci ne couvre que ce qui est propre à ce dépôt (framework CSS/JS, conventions locales).</p>
+</main>
+</body>
+</html>

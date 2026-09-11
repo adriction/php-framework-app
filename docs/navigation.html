@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Navigation — php-framework-app</title>
+    <link rel="stylesheet" href="assets/docs.css">
+</head>
+<body>
+<nav class="sidebar">
+    <h2>php-framework-app</h2>
+    <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="getting-started.html">Démarrage</a></li>
+        <li><a href="tokens.html">Tokens</a></li>
+        <li><a href="grid.html">Grille</a></li>
+        <li><a href="buttons.html">Boutons</a></li>
+        <li><a href="forms.html">Formulaires</a></li>
+        <li><a href="cards.html">Cards</a></li>
+        <li><a href="feedback.html">Badges &amp; alertes</a></li>
+        <li><a href="navigation.html">Navigation</a></li>
+        <li><a href="table.html">Table</a></li>
+        <li><a href="overlay.html">Modal &amp; tooltip</a></li>
+        <li><a href="misc.html">Pagination, avatar, spinner</a></li>
+        <li><a href="javascript.html">JavaScript</a></li>
+        <li><a href="app-conventions.html">Conventions de l'app</a></li>
+        <li><a href="fork-project.html">fork-project.sh</a></li>
+    </ul>
+</nav>
+<main>
+    <h1>Navigation</h1>
+    <p><code>assets/css/framework/components/navigation.css</code> — navbar, onglets, fil d'Ariane. Comportements interactifs (menu mobile, changement d'onglet) : voir <a href="javascript.html">JavaScript</a>. Rendu live : <a href="/styleguide"><code>/styleguide</code></a> (onglets/breadcrumb) et la navbar de cette doc elle-même n'en fait pas usage, mais celle de l'app (<code>templates/layout.html.twig</code>) oui.</p>
+
+    <h2>Navbar</h2>
+    <pre><code>&lt;nav class="navbar navbar-sticky"&gt;
+    &lt;a class="navbar-brand" href="/"&gt;Mon app&lt;/a&gt;
+    &lt;button class="navbar-toggler" data-toggle="collapse" data-target="#nav"&gt;
+        &lt;span class="navbar-toggler-bar"&gt;&lt;/span&gt;
+        &lt;span class="navbar-toggler-bar"&gt;&lt;/span&gt;
+        &lt;span class="navbar-toggler-bar"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="navbar-collapse" id="nav"&gt;
+        &lt;div class="navbar-nav"&gt;
+            &lt;a class="nav-link active" href="/"&gt;Accueil&lt;/a&gt;
+            &lt;a class="nav-link" href="/contact"&gt;Contact&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+    <table>
+        <tr><th>Classe</th><th>Rôle</th></tr>
+        <tr><td><code>.navbar</code></td><td>Barre horizontale, fond + bordure basse</td></tr>
+        <tr><td><code>.navbar-sticky</code></td><td><code>position: sticky</code> en haut de page</td></tr>
+        <tr><td><code>.navbar-brand</code></td><td>Logo/nom, gras</td></tr>
+        <tr><td><code>.navbar-nav</code> / <code>.nav-link</code></td><td>Liste de liens ; <code>.active</code> pour la page courante</td></tr>
+        <tr><td><code>.navbar-toggler</code> / <code>.navbar-collapse</code></td><td>Burger + repli mobile (masqué &lt; <code>md</code>, toujours visible ≥ <code>md</code>) — <code>data-toggle="collapse"</code> requis pour l'ouverture</td></tr>
+    </table>
+
+    <h2>Onglets</h2>
+    <pre><code>&lt;div class="nav-tabs"&gt;
+    &lt;a class="nav-link active" data-toggle="tab" data-target="#p1"&gt;Vue&lt;/a&gt;
+    &lt;a class="nav-link" data-toggle="tab" data-target="#p2"&gt;Docs&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="tab-content"&gt;
+    &lt;div class="tab-pane active" id="p1"&gt;...&lt;/div&gt;
+    &lt;div class="tab-pane" id="p2"&gt;...&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <p><code>.nav-tabs</code> réutilise <code>.nav-link</code> avec un indicateur de bordure basse active. Les panneaux <code>.tab-pane</code> doivent être frères sous un même <code>.tab-content</code> (le JS masque/affiche par groupe de frères).</p>
+
+    <h2>Fil d'Ariane</h2>
+    <pre><code>&lt;div class="breadcrumb"&gt;
+    &lt;span class="breadcrumb-item"&gt;&lt;a href="/"&gt;Accueil&lt;/a&gt;&lt;/span&gt;
+    &lt;span class="breadcrumb-item active"&gt;Page courante&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+    <p>Séparateur <code>/</code> généré en CSS entre chaque <code>.breadcrumb-item</code> (sauf le premier) — pas besoin de le mettre dans le HTML.</p>
+</main>
+</body>
+</html>
